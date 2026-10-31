@@ -3,69 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Content Repurposer | Pro Edition 2026</title>
+    <title>AI Content Repurposer | Global Pro Suite 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between selection:bg-orange-500 selection:text-white">
     <div class="max-w-4xl mx-auto px-4 py-8 w-full">
-        <header class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
-            <h1 class="text-2xl font-black bg-gradient-to-r from-orange-500 to-amber-400 bg-clip-text text-transparent">
-                🚀 AI Repurposer <span class="text-xs bg-orange-500/20 text-orange-400 px-2 py-1 rounded-full border border-orange-500/30">PRO 2026</span>
+        <!-- Header -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
+            <h1 class="text-2xl sm:text-3xl font-black bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-400 bg-clip-text text-transparent flex items-center gap-2">
+                🚀 AI Repurposer <span class="text-xs bg-orange-500/20 text-orange-400 px-2.5 py-1 rounded-full border border-orange-500/30">GLOBAL PRO</span>
             </h1>
-            <span class="text-xs text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">● System Online</span>
+            <div class="flex items-center gap-3">
+                <span class="text-xs text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> System Online
+                </span>
+                <span class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">v2.5 Enterprise</span>
+            </div>
         </header>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl mb-8">
-            <div class="space-y-4">
+        <!-- Main Card -->
+        <div class="bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl mb-8 relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="space-y-6">
                 <div>
-                    <label class="block text-sm font-medium mb-2 text-slate-300">Enter Your Topic / Video Idea:</label>
-                    <input type="text" id="topicInput" placeholder="e.g., Artificial Intelligence in 2026..." 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition">
+                    <label class="block text-sm font-semibold mb-2 text-slate-300">Enter Your Topic, Video Idea, or Raw URL:</label>
+                    <input type="text" id="topicInput" placeholder="e.g., The future of Artificial Intelligence in 2026..." 
+                        class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-5 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition shadow-inner">
                 </div>
-                <button onclick="generateContent()" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 font-bold py-3 px-6 rounded-xl transition shadow-lg shadow-orange-500/20 cursor-pointer">
-                    ✨ Generate Pro Viral Content
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Target Tone Style:</label>
+                        <select id="toneSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-orange-500">
+                            <option value="viral">🔥 High Viral & Engaging</option>
+                            <option value="professional">💼 Professional & Corporate</option>
+                            <option value="educational">💡 Deep Educational</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Target Audience Language:</label>
+                        <select id="langSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-orange-500">
+                            <option value="en">English (Global)</option>
+                            <option value="ku">Kurdish / کوردی</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="generateContent()" class="w-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-slate-950 font-black py-4 px-8 rounded-2xl transition-all shadow-xl shadow-orange-500/20 cursor-pointer text-base tracking-wide flex items-center justify-center gap-2">
+                    ✨ Generate Multi-Platform Viral Empire
                 </button>
             </div>
         </div>
 
-        <div id="resultsArea" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-6">
-            <h2 class="text-lg font-bold text-orange-400 border-b border-slate-800 pb-2">Generated Results:</h2>
-            <div class="space-y-4">
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">🐦 Twitter / X Thread</h3>
-                    <p id="twitterResult" class="text-slate-200 whitespace-pre-line"></p>
+        <!-- Results Area -->
+        <div id="resultsArea" class="hidden bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                <h2 class="text-lg font-bold text-orange-400 flex items-center gap-2">⚡ Generated Global Assets:</h2>
+                <span id="statBadge" class="text-xs text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">Ready to Publish</span>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Twitter/X -->
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 relative group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold text-orange-400 uppercase tracking-wider flex items-center gap-2">🐦 Twitter / X Viral Thread</h3>
+                        <button onclick="copyText('twitterResult')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">Copy</button>
+                    </div>
+                    <p id="twitterResult" class="text-slate-200 whitespace-pre-line text-sm leading-relaxed"></p>
                 </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">🎬 TikTok / Reels Script</h3>
-                    <p id="tiktokResult" class="text-slate-200 whitespace-pre-line"></p>
+
+                <!-- TikTok / Reels -->
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 relative group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold text-orange-400 uppercase tracking-wider flex items-center gap-2">🎬 TikTok / Reels High-Retention Script</h3>
+                        <button onclick="copyText('tiktokResult')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">Copy</button>
+                    </div>
+                    <p id="tiktokResult" class="text-slate-200 whitespace-pre-line text-sm leading-relaxed"></p>
                 </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">💼 LinkedIn Professional Post</h3>
-                    <p id="linkedinResult" class="text-slate-200 whitespace-pre-line"></p>
+
+                <!-- LinkedIn -->
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 relative group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold text-orange-400 uppercase tracking-wider flex items-center gap-2">💼 LinkedIn Thought Leadership Post</h3>
+                        <button onclick="copyText('linkedinResult')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">Copy</button>
+                    </div>
+                    <p id="linkedinResult" class="text-slate-200 whitespace-pre-line text-sm leading-relaxed"></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-6 border-t border-slate-900 text-slate-500 text-xs">
-        &copy; 2026 Youssef Jalal Sleman. All rights reserved. Professional AI Suite.
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-slate-900 text-slate-500 text-xs mt-12 space-y-2">
+        <p>&copy; 2026 Youssef Jalal Sleman. Built with Enterprise-grade Web Architectures.</p>
+        <p class="text-orange-500/80 font-medium">AI Content Repurposer Global Edition — Designed for Creators & Professionals.</p>
     </footer>
 
     <script>
         function generateContent() {
             const topic = document.getElementById('topicInput').value.trim();
+            const tone = document.getElementById('toneSelect').value;
+            const lang = document.getElementById('langSelect').value;
+
             if(!topic) {
-                alert("تکایە سەرەتا بابەتێک بنووسە!");
+                alert("Please enter a topic or video idea first!");
                 return;
             }
 
-            document.getElementById('twitterResult').innerText = `🔥 ${topic} is changing everything right now!\n\nHere are 3 things you must know in 2026:\n1. Massive shift in tech.\n2. Creator economy growth.\n3. Endless opportunities.\n\n#AI #Tech #${topic.replace(/\s+/g, '')}`;
-            
-            document.getElementById('tiktokResult').innerText = `[0-3s Hook]: Stop scrolling if you want to understand ${topic}!\n\n[Body]: Nobody is talking about this hidden secret...\n\n[CTA]: Save this video and follow for daily updates!`;
-            
-            document.getElementById('linkedinResult').innerText = `The landscape of ${topic} is evolving faster than ever.\n\nAs professionals, adapting to these innovations is no longer optional—it's essential.\n\nWhat is your strategy for this year? Let's discuss below. 💡`;
+            let twText = "", tkText = "", liText = "";
+
+            if(lang === 'ku') {
+                twText = `🔥 بابەتێکی گەرم لە جیهانی تکنۆلۆجیا: ${topic}!\n\n۳ خاڵی گرنگ کە دەبێت لە ساڵی ٢٠٢٦ بزانیت:\n1. گۆڕانکاری مەزن لە ژێرخانی سۆفتوێردا.\n2. چاخی نوێی دروستکەرانی ناوەڕۆک.\n3. دەرفەتی بێپایان بۆ داهێنان.\n\n#تکنۆلۆجیا #ئای #${topic.replace(/\s+/g, '')}`;
+                
+                tkText = `[0-3 چرکە - هۆک]: ڕاوەستە! ئەگەر دەتەوێت ${topic} بە ڕێگەیەکی زۆر جیاواز تێبگەیت، ئەم ویدۆیە تا کۆتا ببینە!\n\n[ناوەڕۆک]: زۆر کەس ئەم نهێنییە گەورەیە لە پیشەسازییەکەدا باس ناکەن...\n\n[داواکاری - CTA]: ویدۆکە سەیڤ بکە و لە بۆردەکەمدا بەردەوام بە!`;
+                
+                liText = `دۆخی ئێستای ${topic} خێراتر لە هەموو کاتێک پەرەدەسەنێت.\n\nوەک کەسێکی پرۆفیشناڵ، خۆگونجاندن لەگەڵ ئەم گۆڕانکارییە گەورانە ئیتر بژاردە نییە، بەڵکو زۆر پێویستە.\n\nئایا پلانی تۆ چییە بۆ ئەمساڵ؟ با لە خوارەوە گفتوگۆ لەسەر بکەین. 💡`;
+            } else {
+                twText = `🔥 ${topic} is completely shifting the landscape in 2026!\n\nHere are 3 fundamental insights every creator needs to master right now:\n1. Exponential growth in automated workflows.\n2. The shift toward high-retention storytelling.\n3. Massive monetization vectors.\n\nWhat's your take? Let's discuss below 👇\n\n#AI #Tech #${topic.replace(/\s+/g, '')} #Future`;
+                
+                tkText = `[0-3s Hook]: Stop scrolling if you want to understand the true impact of ${topic}!\n\n[Body]: Almost nobody in the industry is talking about this hidden shift, but it changes everything for creators and developers.\n\n[CTA]: Save this breakdown and follow for daily 2026 tech blueprints!`;
+                
+                liText = `The velocity of innovation around ${topic} is unprecedented.\n\nFor industry leaders and tech professionals, adapting to these advanced tools is no longer optional—it's the core differentiator for survival and growth this year.\n\nHow is your organization leveraging this transformation? Let's connect in the comments. 💡`;
+            }
+
+            document.getElementById('twitterResult').innerText = twText;
+            document.getElementById('tiktokResult').innerText = tkText;
+            document.getElementById('linkedinResult').innerText = liText;
 
             document.getElementById('resultsArea').classList.remove('hidden');
+            document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Asset copied to clipboard successfully! Ready for distribution.");
+            });
         }
     </script>
 </body>
